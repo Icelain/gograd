@@ -28,6 +28,7 @@ func (n Neuron) String() string {
 
 }
 
+// Adds two neurons
 func (n *Neuron) Add(to *Neuron) Neuron {
 
 	n.Partner = to
@@ -41,6 +42,7 @@ func (n *Neuron) Add(to *Neuron) Neuron {
 	return res
 }
 
+// Multiplies two neurons
 func (n *Neuron) Mul(to *Neuron) Neuron {
 
 	n.Partner = to
@@ -53,6 +55,7 @@ func (n *Neuron) Mul(to *Neuron) Neuron {
 
 }
 
+// Pow() function for two neurons
 // Here, the constituents have index 0 as the base and index 1 as the power
 func (n *Neuron) Pow(to *Neuron) Neuron {
 
@@ -73,7 +76,7 @@ func NewNeuron(value float64) Neuron {
 
 }
 
-// first^to
+// first^second
 func traverse(n *Neuron, prevgrad float64, operation Op, first bool) {
 
 	head := n
