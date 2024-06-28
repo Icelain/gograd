@@ -111,7 +111,7 @@ func traverse(n *Neuron, prevgrad float64, operation Op, first bool) {
 
 
 }
-
+// Backprop function
 func (n *Neuron) Gradient() {
 
 	n.Grad = 1.0
