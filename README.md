@@ -1,2 +1,2 @@
 # gograd
-Minimal autograd engine in go
+Minimal scalar autograd engine in go
