@@ -22,6 +22,7 @@ type Neuron struct {
 	Operation    Op // Operation used to create this Neuron
 }
 
+
 func (n Neuron) String() string {
 
 	return fmt.Sprintf("Neuron{%.5f}", n.Value)
@@ -99,7 +100,7 @@ func traverse(n *Neuron, prevgrad float64, operation Op, first bool) {
 		if first {
 			head.Grad = prevgrad * (math.Pow(head.Value, head.Partner.Value) * (head.Partner.Value / head.Value))
 		} else {
-
+	
 			head.Grad = prevgrad * (math.Pow(head.Partner.Value, head.Value) * (math.Log(head.Partner.Value)))
 
 		}
@@ -119,4 +120,37 @@ func (n *Neuron) Gradient() {
 	traverse(n.Constituents[0], n.Grad, n.Operation, true)
 	traverse(n.Constituents[1], n.Grad, n.Operation, false)
 
+}
+
+
+type Layer struct {
+
+	Neurons []*Neuron
+
+}
+
+func (l *Layer) Call() {
+
+	for _, neuron := range l.Neurons {
+
+		neuron.Gradient()
+	
+	}
+
+}
+
+type MLP struct {
+
+	Layers []Layer	
+
+}
+
+func (mlp *MLP) Call() {
+
+	for _, layer := range mlp.Layers {
+
+		layer.Call()
+		
+	}
+	
 }
